@@ -1,0 +1,20 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "FingerprintBiometricSoftware", "FingerprintBiometricSoftware\FingerprintBiometricSoftware.vbproj", "{5577C58F-2AEC-4C07-8C10-815962E26952}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x86 = Debug|x86
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{5577C58F-2AEC-4C07-8C10-815962E26952}.Debug|x86.ActiveCfg = Debug|x86
+		{5577C58F-2AEC-4C07-8C10-815962E26952}.Debug|x86.Build.0 = Debug|x86
+		{5577C58F-2AEC-4C07-8C10-815962E26952}.Release|x86.ActiveCfg = Release|x86
+		{5577C58F-2AEC-4C07-8C10-815962E26952}.Release|x86.Build.0 = Release|x86
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

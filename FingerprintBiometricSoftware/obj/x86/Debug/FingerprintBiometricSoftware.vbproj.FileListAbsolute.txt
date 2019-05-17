@@ -1,0 +1,77 @@
+C:\Users\Mark\AppData\Local\Temporary Projects\FingerprintBiometricSoftware\bin\Debug\FingerprintBiometricSoftware.exe
+C:\Users\Mark\AppData\Local\Temporary Projects\FingerprintBiometricSoftware\bin\Debug\FingerprintBiometricSoftware.pdb
+C:\Users\Mark\AppData\Local\Temporary Projects\FingerprintBiometricSoftware\bin\Debug\FingerprintBiometricSoftware.xml
+C:\Users\Mark\AppData\Local\Temporary Projects\FingerprintBiometricSoftware\obj\x86\Debug\ResolveAssemblyReference.cache
+C:\Users\Mark\AppData\Local\Temporary Projects\FingerprintBiometricSoftware\obj\x86\Debug\FingerprintBiometricSoftware.frmMain.resources
+C:\Users\Mark\AppData\Local\Temporary Projects\FingerprintBiometricSoftware\obj\x86\Debug\FingerprintBiometricSoftware.Resources.resources
+C:\Users\Mark\AppData\Local\Temporary Projects\FingerprintBiometricSoftware\obj\x86\Debug\GenerateResource.read.1.tlog
+C:\Users\Mark\AppData\Local\Temporary Projects\FingerprintBiometricSoftware\obj\x86\Debug\GenerateResource.write.1.tlog
+C:\Users\Mark\AppData\Local\Temporary Projects\FingerprintBiometricSoftware\obj\x86\Debug\FingerprintBiometricSoftware.exe
+C:\Users\Mark\AppData\Local\Temporary Projects\FingerprintBiometricSoftware\obj\x86\Debug\FingerprintBiometricSoftware.xml
+C:\Users\Mark\AppData\Local\Temporary Projects\FingerprintBiometricSoftware\obj\x86\Debug\FingerprintBiometricSoftware.pdb
+D:\Projects - VBdotNet\FingerprintBiometricSoftware\FingerprintBiometricSoftware\obj\x86\Debug\FingerprintBiometricSoftware.exe
+D:\Projects - VBdotNet\FingerprintBiometricSoftware\FingerprintBiometricSoftware\obj\x86\Debug\FingerprintBiometricSoftware.xml
+D:\Projects - VBdotNet\FingerprintBiometricSoftware\FingerprintBiometricSoftware\obj\x86\Debug\FingerprintBiometricSoftware.pdb
+D:\Projects - VBdotNet\FingerprintBiometricSoftware\FingerprintBiometricSoftware\bin\Debug\FingerprintBiometricSoftware.exe
+D:\Projects - VBdotNet\FingerprintBiometricSoftware\FingerprintBiometricSoftware\bin\Debug\FingerprintBiometricSoftware.pdb
+D:\Projects - VBdotNet\FingerprintBiometricSoftware\FingerprintBiometricSoftware\bin\Debug\FingerprintBiometricSoftware.xml
+D:\Projects - VBdotNet\FingerprintBiometricSoftware\FingerprintBiometricSoftware\obj\x86\Debug\ResolveAssemblyReference.cache
+D:\Projects - VBdotNet\FingerprintBiometricSoftware\FingerprintBiometricSoftware\obj\x86\Debug\FingerprintBiometricSoftware.frmMain.resources
+D:\Projects - VBdotNet\FingerprintBiometricSoftware\FingerprintBiometricSoftware\obj\x86\Debug\FingerprintBiometricSoftware.Resources.resources
+D:\Projects - VBdotNet\FingerprintBiometricSoftware\FingerprintBiometricSoftware\obj\x86\Debug\GenerateResource.read.1.tlog
+D:\Projects - VBdotNet\FingerprintBiometricSoftware\FingerprintBiometricSoftware\obj\x86\Debug\GenerateResource.write.1.tlog
+D:\Projects - VBdotNet\FingerprintBiometricSoftware\FingerprintBiometricSoftware\bin\Debug\FingerprintBiometricSoftware.exe.config
+D:\Projects - VBdotNet\FingerprintBiometricSoftware\FingerprintBiometricSoftware\obj\x86\Debug\FingerprintBiometricSoftware.frmEnrollFingerprints.resources
+D:\Projects - VBdotNet\FingerprintBiometricSoftware\FingerprintBiometricSoftware\bin\Debug\FingerprintBiometricSoftware.exe.manifest
+D:\Projects - VBdotNet\FingerprintBiometricSoftware\FingerprintBiometricSoftware\bin\Debug\FingerprintBiometricSoftware.application
+D:\Projects - VBdotNet\FingerprintBiometricSoftware\FingerprintBiometricSoftware\obj\x86\Debug\FingerprintBiometricSoftware.exe.manifest
+D:\Projects - VBdotNet\FingerprintBiometricSoftware\FingerprintBiometricSoftware\obj\x86\Debug\FingerprintBiometricSoftware.application
+D:\Projects - VBdotNet\FingerprintBiometricSoftware\FingerprintBiometricSoftware\obj\x86\Debug\FingerprintBiometricSoftware.frmConnectionSettings.resources
+D:\Projects - VBdotNet\FingerprintBiometricSoftware\FingerprintBiometricSoftware\bin\Debug\C1.Win.C1Input.4.dll
+D:\Projects - VBdotNet\FingerprintBiometricSoftware\FingerprintBiometricSoftware\bin\Debug\C1.Win.C1List.4.dll
+D:\Projects - VBdotNet\FingerprintBiometricSoftware\FingerprintBiometricSoftware\bin\Debug\C1.Win.C1TrueDBGrid.4.dll
+D:\Projects - VBdotNet\FingerprintBiometricSoftware\FingerprintBiometricSoftware\bin\Debug\C1.Win.C1Input.4.xml
+D:\Projects - VBdotNet\FingerprintBiometricSoftware\FingerprintBiometricSoftware\bin\Debug\C1.Win.C1List.4.xml
+D:\Projects - VBdotNet\FingerprintBiometricSoftware\FingerprintBiometricSoftware\bin\Debug\C1.Win.C1TrueDBGrid.4.xml
+D:\Projects - VBdotNet\FingerprintBiometricSoftware\FingerprintBiometricSoftware\obj\x86\Debug\FingerprintBiometricSoftware.exe.licenses
+D:\Projects - VBdotNet\FingerprintBiometricSoftware\FingerprintBiometricSoftware\obj\x86\Debug\FingerprintBiometricSoftware.frmAdminTasks.resources
+D:\Projects - VBdotNet\FingerprintBiometricSoftware\FingerprintBiometricSoftware\obj\x86\Debug\FingerprintBiometricSoftware.frmEmployeeInfo.resources
+D:\Projects - VBdotNet\FingerprintBiometricSoftware\FingerprintBiometricSoftware\obj\x86\Debug\FingerprintBiometricSoftware.frmUsers.resources
+D:\Projects - VBdotNet\FingerprintBiometricSoftware\FingerprintBiometricSoftware\obj\x86\Debug\FingerprintBiometricSoftware.frmSearch.resources
+D:\Projects - VBdotNet\FingerprintBiometricSoftware\FingerprintBiometricSoftware\obj\x86\Debug\FingerprintBiometricSoftware.frmSecurityVerification.resources
+E:\Mark\FingerprintBiometricSoftware\FingerprintBiometricSoftware\bin\Debug\FingerprintBiometricSoftware.exe.config
+E:\Mark\FingerprintBiometricSoftware\FingerprintBiometricSoftware\obj\x86\Debug\FingerprintBiometricSoftware.exe
+E:\Mark\FingerprintBiometricSoftware\FingerprintBiometricSoftware\obj\x86\Debug\FingerprintBiometricSoftware.xml
+E:\Mark\FingerprintBiometricSoftware\FingerprintBiometricSoftware\obj\x86\Debug\FingerprintBiometricSoftware.pdb
+E:\Mark\FingerprintBiometricSoftware\FingerprintBiometricSoftware\bin\Debug\FingerprintBiometricSoftware.exe.manifest
+E:\Mark\FingerprintBiometricSoftware\FingerprintBiometricSoftware\bin\Debug\FingerprintBiometricSoftware.application
+E:\Mark\FingerprintBiometricSoftware\FingerprintBiometricSoftware\bin\Debug\FingerprintBiometricSoftware.exe
+E:\Mark\FingerprintBiometricSoftware\FingerprintBiometricSoftware\bin\Debug\FingerprintBiometricSoftware.pdb
+E:\Mark\FingerprintBiometricSoftware\FingerprintBiometricSoftware\bin\Debug\FingerprintBiometricSoftware.xml
+E:\Mark\FingerprintBiometricSoftware\FingerprintBiometricSoftware\bin\Debug\C1.Win.C1Input.4.dll
+E:\Mark\FingerprintBiometricSoftware\FingerprintBiometricSoftware\bin\Debug\C1.Win.C1List.4.dll
+E:\Mark\FingerprintBiometricSoftware\FingerprintBiometricSoftware\bin\Debug\C1.Win.C1TrueDBGrid.4.dll
+E:\Mark\FingerprintBiometricSoftware\FingerprintBiometricSoftware\bin\Debug\C1.Win.C1Input.4.xml
+E:\Mark\FingerprintBiometricSoftware\FingerprintBiometricSoftware\bin\Debug\C1.Win.C1List.4.xml
+E:\Mark\FingerprintBiometricSoftware\FingerprintBiometricSoftware\bin\Debug\C1.Win.C1TrueDBGrid.4.xml
+E:\Mark\FingerprintBiometricSoftware\FingerprintBiometricSoftware\obj\x86\Debug\FingerprintBiometricSoftware.frmAdminTasks.resources
+E:\Mark\FingerprintBiometricSoftware\FingerprintBiometricSoftware\obj\x86\Debug\FingerprintBiometricSoftware.frmConnectionSettings.resources
+E:\Mark\FingerprintBiometricSoftware\FingerprintBiometricSoftware\obj\x86\Debug\FingerprintBiometricSoftware.frmEmployeeInfo.resources
+E:\Mark\FingerprintBiometricSoftware\FingerprintBiometricSoftware\obj\x86\Debug\FingerprintBiometricSoftware.frmEnrollFingerprints.resources
+E:\Mark\FingerprintBiometricSoftware\FingerprintBiometricSoftware\obj\x86\Debug\FingerprintBiometricSoftware.frmMain.resources
+E:\Mark\FingerprintBiometricSoftware\FingerprintBiometricSoftware\obj\x86\Debug\FingerprintBiometricSoftware.frmSearch.resources
+E:\Mark\FingerprintBiometricSoftware\FingerprintBiometricSoftware\obj\x86\Debug\FingerprintBiometricSoftware.frmSecurityVerification.resources
+E:\Mark\FingerprintBiometricSoftware\FingerprintBiometricSoftware\obj\x86\Debug\FingerprintBiometricSoftware.frmUsers.resources
+E:\Mark\FingerprintBiometricSoftware\FingerprintBiometricSoftware\obj\x86\Debug\FingerprintBiometricSoftware.Resources.resources
+E:\Mark\FingerprintBiometricSoftware\FingerprintBiometricSoftware\obj\x86\Debug\FingerprintBiometricSoftware.exe.licenses
+E:\Mark\FingerprintBiometricSoftware\FingerprintBiometricSoftware\obj\x86\Debug\FingerprintBiometricSoftware.exe.manifest
+E:\Mark\FingerprintBiometricSoftware\FingerprintBiometricSoftware\obj\x86\Debug\FingerprintBiometricSoftware.application
+E:\Mark\FingerprintBiometricSoftware\FingerprintBiometricSoftware\obj\x86\Debug\FingerprintBiometricSoftware.frmSchedules.resources
+E:\Mark\FingerprintBiometricSoftware\FingerprintBiometricSoftware\obj\x86\Debug\FingerprintBiometricSoftware.frmCutOffPeriods.resources
+E:\Mark\FingerprintBiometricSoftware\FingerprintBiometricSoftware\obj\x86\Debug\FingerprintBiometricSoftware.frmAssignSchedules.resources
+E:\Mark\FingerprintBiometricSoftware\FingerprintBiometricSoftware\obj\x86\Debug\FingerprintBiometricSoftware.frmDTRAdjustments.resources
+E:\Mark\FingerprintBiometricSoftware\FingerprintBiometricSoftware\obj\x86\Debug\FingerprintBiometricSoftware.frmRPDTRs.resources
+E:\Mark\FingerprintBiometricSoftware\FingerprintBiometricSoftware\obj\x86\Debug\FingerprintBiometricSoftware.vbproj.GenerateResource.Cache
+E:\Mark\FingerprintBiometricSoftware\FingerprintBiometricSoftware\obj\x86\Debug\FingerprintBiometricSoftware.frmImportDTR.resources
+E:\Mark\FingerprintBiometricSoftware\FingerprintBiometricSoftware\obj\x86\Debug\FingerprintBiometricSoftware.frmHolidaySchedules.resources
+E:\Mark\FingerprintBiometricSoftware\FingerprintBiometricSoftware\obj\x86\Debug\FingerprintBiometricSoftware.vbprojResolveAssemblyReference.cache

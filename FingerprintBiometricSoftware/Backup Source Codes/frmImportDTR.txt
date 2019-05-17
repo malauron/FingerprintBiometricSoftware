@@ -1,0 +1,279 @@
+Imports MySql.Data.MySqlClient
+Imports System.IO
+
+Public Class frmImportDTR
+
+    Private Sub btnBack_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnBack.Click
+        Call Close()
+    End Sub
+
+    Private Sub frmImportDTR_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
+        'Dim mIDs As String
+        'Dim mDateTime As String
+        'Dim mInString As Integer
+        'For Each line As String In System.IO.File.ReadAllLines("e:\1_attlog.dat")
+        '    If Microsoft.VisualBasic.Left(line.ToString, 1) <> "S" And Microsoft.VisualBasic.Left(line.ToString, 1) <> "C" Then
+        '        mInString = InStr(line.ToString, CChar(vbTab))
+        '        mIDs = Microsoft.VisualBasic.Left(line.ToString, mInString - 1)
+        '        mDateTime = Microsoft.VisualBasic.Mid(line.ToString, mInString + 1, 19)
+        '        'MsgBox("Employee ID: " & mIDs & vbCrLf & "Date & Time : " & mDateTime)
+        '        'DataGridView1.Rows.Add(line.Split(CChar(vbTab)))
+        '    End If
+        'Next
+    End Sub
+
+    Private Sub btnSave_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnSave.Click
+
+        btnSave.Enabled = False
+
+        Dim mTrans As MySqlTransaction
+        Dim mCommand As New MySqlCommand
+        Dim mIDs As String
+        Dim mDateTime As String
+        Dim mInString As Integer
+        Dim mLogStat As Integer
+
+        With My.Computer.FileSystem
+            If Trim(lblPath.Text) <> "" Then
+                If Not .FileExists(lblPath.Text) Then
+                    MsgBox("Invalid file format.", MsgBoxStyle.Exclamation)
+                    btnSave.Enabled = True
+                    Exit Sub
+                End If
+            Else
+                MsgBox("Invalid file format.", MsgBoxStyle.Exclamation)
+                btnSave.Enabled = True
+                Exit Sub
+            End If
+        End With
+
+        mTrans = Cn.Connection.BeginTransaction
+
+        Try
+            mCommand.Transaction = mTrans
+            mCommand.Connection = Cn.Connection
+            For Each line As String In System.IO.File.ReadAllLines(lblPath.Text)
+                'MsgBox(line.ToArray.Count)
+                If Microsoft.VisualBasic.Left(line.ToString, 1) <> "S" And Microsoft.VisualBasic.Left(line.ToString, 1) <> "C" Then
+                    mInString = InStr(line.ToString, CChar(vbTab))
+                    mIDs = Microsoft.VisualBasic.Left(line.ToString, mInString - 1)
+                    mDateTime = Microsoft.VisualBasic.Mid(line.ToString, mInString + 1, 19)
+                    If CType(Format(dtpDateFrom.Value, "MM/dd/yyyy"), Date) <= CType(mDateTime, Date) Then
+                        mLogStat = CType(Microsoft.VisualBasic.Mid(line.ToString, mInString + 23, 1), Integer)
+                        If mLogStat < 2 Then
+                            mLogStat = 1
+                        Else
+                            mLogStat = 0
+                        End If
+                        mCommand.CommandText = "insert ignore into employee_logs(employee_id,datetime_log,log_status) values (" & "" & CType(Trim(mIDs), Integer) & "," & _
+                                                       "'" & Format(CType(mDateTime, Date), "yyyy-MM-dd HH:mm:ss") & "'," & mLogStat & ")"
+                        mCommand.ExecuteNonQuery()
+                    End If
+                End If
+            Next
+            mTrans.Commit()
+            Call Create_DTR()
+            MsgBox("Upload complete!", MsgBoxStyle.Information)
+        Catch ex As MySqlException
+            If Not (mTrans Is Nothing) Then
+                mTrans.Rollback()
+            End If
+            MsgBox(ex.Message, MsgBoxStyle.Critical)
+        Catch ex As Exception
+            If Not (mTrans Is Nothing) Then
+                mTrans.Rollback()
+            End If
+            MsgBox("Invalid file format.", MsgBoxStyle.Exclamation)
+            'MsgBox(ex.Message)
+        Finally
+            Try
+                mCommand.Dispose()
+                mTrans.Dispose()
+            Catch ex As Exception
+                MsgBox(ex.Message, MsgBoxStyle.Exclamation)
+            Finally
+                btnSave.Enabled = True
+            End Try
+        End Try
+    End Sub
+
+    Private Sub Create_DTR()
+
+        Dim mTrans As MySqlTransaction
+        Dim mCommand As New MySqlCommand
+        Dim mDateFrom As Date
+        Dim mCurrDate As Date
+        Dim mEmployee_IDs As New DataTable
+        Dim employee_logs As New DataTable
+        Dim mFirstIN As Boolean = True
+        Dim mColNum As Integer = 1
+
+        mDateFrom = CType(Format(dtpDateFrom.Value, "MM/dd/yyyy"), Date)
+
+
+        mTrans = Cn.Connection.BeginTransaction
+        Try
+            mCommand.Transaction = mTrans
+            mCommand.Connection = Cn.Connection
+
+            'delete existing dtrs for the selected period
+            mCommand.CommandText = "delete from employee_dtrs where work_date >= '" & Format(mDateFrom, "yyyy-MM-dd") & "'"
+            mCommand.ExecuteNonQuery()
+
+            'create new dtrs       
+
+            NetOpen(mEmployee_IDs, "select a.*,b.schedule_id from (select employee_id from employee_logs where date(datetime_log) >='" & Format(mDateFrom, "yyyy-MM-dd") & "'group by employee_id) a " & _
+                                   "left outer join employees b on a.employee_id=b.employee_id ", Cn.Connection)
+            For Each mEmpID As DataRow In mEmployee_IDs.Rows
+                NetOpen(employee_logs, "select * from employee_logs where employee_id = " & CType(mEmpID.Item("employee_id"), String) & " and " & _
+                                    "date(datetime_log) >= '" & Format(mDateFrom, "yyyy-MM-dd") & "' order by datetime_log", Cn.Connection)
+                For Each mLog As DataRow In employee_logs.Rows
+                    If Not mFirstIN Then
+                        If mCurrDate <> CType(Format(mLog.Item("datetime_log"), "MM/dd/yyyy"), Date) Then
+                            If CType(mLog.Item("log_status"), Integer) = 1 Then
+                                mColNum = 1
+                                mCurrDate = CType(Format(mLog.Item("datetime_log"), "MM/dd/yyyy"), Date)
+                                mCommand.CommandText = "insert ignore into schedules_assignment (employee_id,schedule_id,work_date) values (" & _
+                                            "" & CType(mEmpID.Item("employee_id"), String) & "," & CType(mEmpID.Item("schedule_id"), String) & ",'" & Format(mCurrDate, "yyyy-MM-dd") & "')"
+                                mCommand.ExecuteNonQuery()
+                                mCommand.CommandText = "insert into employee_dtrs (employee_id,work_date,log1) values " & _
+                                            "(" & CType(mEmpID.Item("employee_id"), String) & ",'" & Format(mCurrDate, "yyyy-MM-dd") & "'," & _
+                                            "'" & Format(CType(mLog.Item("datetime_log"), Date), "yyyy-MM-dd HH:mm:ss") & "')"
+                                mCommand.ExecuteNonQuery()
+                                mColNum = mColNum + 1
+                            Else
+                                If mColNum = 2 Or mColNum = 4 Or mColNum = 6 Then
+                                    mCommand.CommandText = "update employee_dtrs set log" & mColNum & "='" & Format(CType(mLog.Item("datetime_log"), Date), "yyyy-MM-dd HH:mm:ss") & "' " & _
+                                                    "where employee_id=" & CType(mEmpID.Item("employee_id"), String) & " and work_date='" & Format(mCurrDate, "yyyy-MM-dd") & "'"
+                                    mCommand.ExecuteNonQuery()
+                                    mColNum = mColNum + 1
+                                End If
+                            End If
+                        Else
+                            If CType(mLog.Item("log_status"), Integer) = 1 Then
+                                If mColNum = 3 Or mColNum = 5 Then
+                                    mCommand.CommandText = "update employee_dtrs set log" & mColNum & "='" & Format(CType(mLog.Item("datetime_log"), Date), "yyyy-MM-dd HH:mm:ss") & "' " & _
+                                                "where employee_id=" & CType(mEmpID.Item("employee_id"), String) & " and work_date='" & Format(mCurrDate, "yyyy-MM-dd") & "'"
+                                    mCommand.ExecuteNonQuery()
+                                    mColNum = mColNum + 1
+                                Else
+                                    If mColNum + 1 < 6 Then
+                                        mCommand.CommandText = "update employee_dtrs set log" & mColNum + 1 & "='" & Format(CType(mLog.Item("datetime_log"), Date), "yyyy-MM-dd HH:mm:ss") & "' " & _
+                                                "where employee_id=" & CType(mEmpID.Item("employee_id"), String) & " and work_date='" & Format(mCurrDate, "yyyy-MM-dd") & "'"
+                                        mCommand.ExecuteNonQuery()
+                                        mColNum = mColNum + 2
+                                    End If
+                                End If
+                            Else
+                                If mColNum = 2 Or mColNum = 4 Or mColNum = 6 Then
+                                    mCommand.CommandText = "update employee_dtrs set log" & mColNum & "='" & Format(CType(mLog.Item("datetime_log"), Date), "yyyy-MM-dd HH:mm:ss") & "' " & _
+                                                "where employee_id=" & CType(mEmpID.Item("employee_id"), String) & " and work_date='" & Format(mCurrDate, "yyyy-MM-dd") & "'"
+                                    mCommand.ExecuteNonQuery()
+                                    mColNum = mColNum + 1
+                                Else
+                                    If mColNum < 6 Then
+                                        mCommand.CommandText = "update employee_dtrs set log" & mColNum + 1 & "='" & Format(CType(mLog.Item("datetime_log"), Date), "yyyy-MM-dd HH:mm:ss") & "' " & _
+                                                "where employee_id=" & CType(mEmpID.Item("employee_id"), String) & " and work_date='" & Format(mCurrDate, "yyyy-MM-dd") & "'"
+                                        mCommand.ExecuteNonQuery()
+                                        mColNum = mColNum + 2
+                                    End If
+                                End If
+                            End If
+                        End If
+                    End If
+                    If mFirstIN Then
+                        If CType(mLog.Item("log_status"), Integer) = 1 Then
+                            mFirstIN = False
+                            mColNum = 2
+                            mCurrDate = CType(Format(mLog.Item("datetime_log"), "MM/dd/yyyy"), Date)
+                            mCommand.CommandText = "insert ignore into schedules_assignment (employee_id,schedule_id,work_date) values (" & _
+                                            "" & CType(mEmpID.Item("employee_id"), String) & "," & CType(mEmpID.Item("schedule_id"), String) & ",'" & Format(mCurrDate, "yyyy-MM-dd") & "')"
+                            mCommand.ExecuteNonQuery()
+                            mCommand.CommandText = "insert into employee_dtrs (employee_id,work_date,log1) values " & _
+                                        "(" & CType(mEmpID.Item("employee_id"), String) & ",'" & Format(mCurrDate, "yyyy-MM-dd") & "','" & Format(CType(mLog.Item("datetime_log"), Date), "yyyy-MM-dd HH:mm:ss") & "')"
+                            mCommand.ExecuteNonQuery()
+                        End If
+                    End If
+                Next
+            Next
+            mTrans.Commit()
+        Catch ex As MySqlException
+            If Not (mTrans Is Nothing) Then
+                mTrans.Rollback()
+            End If
+            MsgBox(ex.Message, MsgBoxStyle.Critical)
+        Catch ex As Exception
+            If Not (mTrans Is Nothing) Then
+                mTrans.Rollback()
+            End If
+            MsgBox(ex.Message, MsgBoxStyle.Critical)
+        Finally
+            Try
+                mCommand.Dispose()
+                mTrans.Dispose()
+            Catch ex As Exception
+                MsgBox(ex.Message, MsgBoxStyle.Exclamation)
+            Finally
+                btnNew.Enabled = True
+            End Try
+        End Try
+    End Sub
+
+    Private Sub btnNew_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnNew.Click
+        Dim mTrans As MySqlTransaction
+        Dim mCommand As New MySqlCommand
+        Dim employee_ids As New DataTable
+        Dim employee_logs As New DataTable
+        Dim mLogStatus As Integer
+
+        mTrans = Cn.Connection.BeginTransaction
+        Try
+            mCommand.Transaction = mTrans
+            mCommand.Connection = Cn.Connection
+           NetOpen(employee_ids, "select employee_id from employee_logs group by employee_id", Cn.Connection)
+            If employee_ids.Rows.Count > 0 Then
+                For Each mRow As DataRow In employee_ids.Rows
+                    NetOpen(employee_logs, "select datetime_log from employee_logs where employee_id = " & CType(mRow.Item("employee_id"), Integer) & " order by datetime_log", Cn.Connection)
+                    mLogStatus = 1
+                    For Each mLog As DataRow In employee_logs.Rows
+                        mCommand.CommandText = "update employee_logs set log_status = '" & mLogStatus & "' where datetime_log= '" & Format(CType(mLog.Item("datetime_log"), Date), "yyyy-MM-dd HH:mm:ss") & "'"
+                        mCommand.ExecuteNonQuery()
+                        If mLogStatus = 1 Then
+                            mLogStatus = 0
+                        Else
+                            mLogStatus = 1
+                        End If
+                    Next
+                Next
+            End If
+            mTrans.Commit()
+            MsgBox("Update complete!", MsgBoxStyle.Information)
+        Catch ex As MySqlException
+            If Not (mTrans Is Nothing) Then
+                mTrans.Rollback()
+            End If
+            MsgBox(ex.ErrorCode, MsgBoxStyle.Critical)
+        Catch ex As Exception
+            If Not (mTrans Is Nothing) Then
+                mTrans.Rollback()
+            End If
+            MsgBox(ex.Message, MsgBoxStyle.Critical)
+        Finally
+            Try
+                mCommand.Dispose()
+                mTrans.Dispose()
+            Catch ex As Exception
+                MsgBox(ex.Message, MsgBoxStyle.Exclamation)
+            Finally
+                btnNew.Enabled = True
+            End Try
+        End Try
+    End Sub
+
+    Private Sub btnBrowse_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnBrowse.Click
+        If ofdLogs.ShowDialog() = DialogResult.OK Then
+            lblPath.Text = ofdLogs.FileName
+        End If
+    End Sub
+
+End Class
